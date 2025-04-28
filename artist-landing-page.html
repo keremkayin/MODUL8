@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MODUL8 - Official Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base styles */
+        :root {
+            --primary-color: #0f1923;
+            --accent-color: #00f0ff;
+            --text-color: #e2e8f0;
+            --dark-bg: #070b10;
+            --gradient: linear-gradient(135deg, #0a192f, #111827);
+            --secondary-accent: #9d00ff;
+            --metal-gradient: linear-gradient(145deg, #636363, #b8b8b8, #636363);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        /* Hero section */
+        .hero {
+            height: 100vh;
+            background: var(--gradient);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            width: 180px;
+            height: 180px;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 10px var(--accent-color));
+        }
+        
+        .artist-name {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            background: var(--metal-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            color: var(--accent-color);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: transparent;
+            color: var(--accent-color);
+            text-decoration: none;
+            border-radius: 0;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1px solid var(--accent-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+            background-color: rgba(0, 240, 255, 0.1);
+        }
+        
+        /* Music section */
+        .section {
+            padding: 5rem 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+        
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+            margin: 1rem auto;
+        }
+        
+        .music-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .music-card {
+            background-color: rgba(15, 25, 35, 0.8);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            width: 300px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .music-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
+            border-color: var(--accent-color);
+        }
+        
+        .music-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .music-card:hover .music-img {
+            transform: scale(1.05);
+        }
+        
+        .music-info {
+            padding: 1.5rem;
+            border-top: 1px solid rgba(0, 240, 255, 0.2);
+        }
+        
+        .music-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+        
+        .music-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .music-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .music-link {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .music-link:hover {
+            color: var(--accent-color);
+            transform: scale(1.2);
+        }
+        
+        /* About section */
+        .about {
+            background-color: rgba(10, 25, 47, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        
+        .about::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 240, 255, 0.05), transparent, rgba(157, 0, 255, 0.05));
+            z-index: 0;
+        }
+        
+        .about-content {
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .about-text {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        /* Shows section */
+        .shows-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .show-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background-color: rgba(15, 25, 35, 0.8);
+            border-left: 3px solid var(--accent-color);
+            transition: all 0.3s ease;
+        }
+        
+        .show-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+        }
+        
+        .show-info {
+            flex: 1;
+        }
+        
+        .show-date {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+            letter-spacing: 1px;
+        }
+        
+        .show-location {
+            opacity: 0.8;
+        }
+        
+        .ticket-button {
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 8px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+        }
+        
+        .ticket-button:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+        
+        /* Contact and footer */
+        .contact {
+            text-align: center;
+            position: relative;
+        }
+        
+        .contact::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), transparent, rgba(157, 0, 255, 0.05));
+            z-index: 0;
+        }
+        
+        .contact > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-link {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: rgba(15, 25, 35, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 240, 255, 0.2);
+        }
+        
+        .social-link:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+        }
+        
+        .newsletter {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: rgba(15, 25, 35, 0.8);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+        }
+        
+        .newsletter-title {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            letter-spacing: 2px;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            margin-top: 1rem;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text-color);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+        }
+        
+        .newsletter-button {
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 0 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .newsletter-button:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: rgba(7, 11, 16, 0.9);
+            margin-top: 5rem;
+            border-top: 1px solid rgba(0, 240, 255, 0.1);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .logo {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .artist-name {
+                font-size: 2.5rem;
+                letter-spacing: 5px;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .section {
+                padding: 3rem 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .show-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .show-info {
+                margin-bottom: 1rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-input {
+                margin-bottom: 1rem;
+            }
+            
+            .newsletter-button {
+                padding: 12px;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        
+        /* Glitch effect */
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-2px, 2px);
+            }
+            40% {
+                transform: translate(-2px, -2px);
+            }
+            60% {
+                transform: translate(2px, 2px);
+            }
+            80% {
+                transform: translate(2px, -2px);
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+        
+        .glitch-hover:hover {
+            animation: glitch 0.5s cubic-bezier(.25, .46, .45, .94) both infinite;
+        }
+        
+        /* Glow effects */
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(0, 240, 255, 0.8), 0 0 30px rgba(157, 0, 255, 0.4);
+            }
+            100% {
+                box-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <img src="/api/placeholder/180/180" alt="MODUL8 Logo" class="logo fade-in">
+            <h1 class="artist-name fade-in glitch-hover">MODUL8</h1>
+            <p class="tagline fade-in delay-1">SONIC ARCHITECTURE • DIGITAL EVOLUTION</p>
+            <a href="#music" class="cta-button fade-in delay-2">Enter Experience</a>
+        </div>
+    </section>
+    
+    <!-- Music Section -->
+    <section id="music" class="section">
+        <h2 class="section-title">Latest Frequencies</h2>
+        <div class="music-container">
+            <!-- Music Card 1 -->
+            <div class="music-card">
+                <img src="/api/placeholder/300/300" alt="Album Cover" class="music-img">
+                <div class="music-info">
+                    <h3 class="music-title">NEURAL NETWORK</h3>
+                    <p class="music-subtitle">Released: APR 2025</p>
+                    <div class="music-links">
+                        <a href="#" class="music-link"><i class="fab fa-spotify"></i></a>
+                        <a href="#" class="music-link"><i class="fab fa-apple"></i></a>
+                        <a href="#" class="music-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="music-link"><i class="fab fa-bandcamp"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Music Card 2 -->
+            <div class="music-card">
+                <img src="/api/placeholder/300/300" alt="Album Cover" class="music-img">
+                <div class="music-info">
+                    <h3 class="music-title">QUANTUM STATE</h3>
+                    <p class="music-subtitle">Released: NOV 2024</p>
+                    <div class="music-links">
+                        <a href="#" class="music-link"><i class="fab fa-spotify"></i></a>
+                        <a href="#" class="music-link"><i class="fab fa-apple"></i></a>
+                        <a href="#" class="music-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="music-link"><i class="fab fa-bandcamp"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Music Card 3 -->
+            <div class="music-card">
+                <img src="/api/placeholder/300/300" alt="Album Cover" class="music-img">
+                <div class="music-info">
+                    <h3 class="music-title">BIORHYTHM</h3>
+                    <p class="music-subtitle">Released: JUN 2024</p>
+                    <div class="music-links">
+                        <a href="#" class="music-link"><i class="fab fa-spotify"></i></a>
+                        <a href="#" class="music-link"><i class="fab fa-apple"></i></a>
+                        <a href="#" class="music-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="music-link"><i class="fab fa-bandcamp"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <h2 class="section-title">Identity</h2>
+        <div class="about-content">
+            <p class="about-text">
+                MODUL8 is a boundary-pushing electronic artist and sound architect known for creating immersive sonic landscapes that blend techno, ambient, and experimental electronic elements. With a meticulous approach to sound design and composition, MODUL8 explores the relationship between technology and human consciousness through evolving rhythmic structures and atmospheric textures.
+            </p>
+            <p class="about-text">
+                Since emerging from the underground electronic scene in 2021, MODUL8 has gained recognition for delivering mesmerizing performances where visual elements synchronize perfectly with auditory experiences. The distinctive sound continues to evolve with each release, pushing the boundaries of contemporary electronic music and establishing MODUL8 as a visionary voice in the future of digital audio expression.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Shows Section -->
+    <section id="shows" class="section">
+        <h2 class="section-title">Upcoming Transmissions</h2>
+        <div class="shows-container">
+            <!-- Show Item 1 -->
+            <div class="show-item">
+                <div class="show-info">
+                    <p class="show-date">MAY 15, 2025</p>
+                    <p class="show-location">Berghain, Berlin, Germany</p>
+                </div>
+                <button class="ticket-button">Access Event</button>
+            </div>
+            
+            <!-- Show Item 2 -->
+            <div class="show-item">
+                <div class="show-info">
+                    <p class="show-date">JUNE 8, 2025</p>
+                    <p class="show-location">Printworks, London, UK</p>
+                </div>
+                <button class="ticket-button">Access Event</button>
+            </div>
+            
+            <!-- Show Item 3 -->
+            <div class="show-item">
+                <div class="show-info">
+                    <p class="show-date">JULY 22, 2025</p>
+                    <p class="show-location">Fabric, Tokyo, Japan</p>
+                </div>
+                <button class="ticket-button">Access Event</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <h2 class="section-title">Interface</h2>
+        <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-soundcloud"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <div class="newsletter">
+            <h3 class="newsletter-title">JOIN THE NETWORK</h3>
+            <p>Subscribe for exclusive content, early releases, and event notifications.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="your@email.com" class="newsletter-input" required>
+                <button type="submit" class="newsletter-button">Connect</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 MODUL8. All Rights Reserved.</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Intersection Observer for fade-in animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {threshold: 0.1});
+            
+            document.querySelectorAll('.section-title, .music-card, .show-item, .about-text, .newsletter').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Simulate logo loading
+            const logoPlaceholder = document.querySelector('.logo');
+            if (logoPlaceholder) {
+                // In a real implementation, you would replace the placeholder with your actual logo
+                console.log("Logo would be loaded here in production");
+            }
+        });
+    </script>
+</body>
+</html>
